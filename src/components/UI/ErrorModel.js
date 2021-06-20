@@ -5,12 +5,6 @@ import classes from './ErrorModal.module.css';
 
 const ErrorModel = (props) => {
 
-
-   
-
-
-
-
 return (
         <>
             <div className={classes.backdrop} />
