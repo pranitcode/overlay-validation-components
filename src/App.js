@@ -1,33 +1,28 @@
-import React,{useState } from 'react'
-import MyInput from './components/MyInput'
-import MyUserList from './components/MyUserList';
-import Overlay from './components/Overlay';
+import React,{useState} from 'react';
 
-const MyData = [
-    {id: 'e1', username: 'Pranitcode', age: "20" },
-    { id: 'e2', username: 'Pranitcode',age: "20"},
-    {id: 'e3', username: 'Pranitcode', age: "20" }
-];
+import AddUser from './components/Users/AddUser';
+import UserList from './components/Users/UserList';
 
-  
+function App() {
 
+const [userList, setUserList]= useState([])
 
-const App = () => {
-const [newExpense , setNewExpenses] = useState(MyData);
+  const addUserHandler = (uName, uAge) => {
 
-  const addExpenseHandler = expense => {
-  setNewExpenses(prevExpenses => {
-      return [expense, ...prevExpenses]
+    setUserList((prevUsersList) => {
+      return [...prevUsersList, { name: uName, age: uAge,id: Math.random().toString() }];
     });
-  };
 
-return (
-        <div>
-         <MyInput onAddexpense={addExpenseHandler}/>
-    <MyUserList data={newExpense} />
-    <Overlay/>
-        </div>
-    );
-};
+  };
+  
+  
+  
+  return (
+    <div>
+      <AddUser onAddUser={addUserHandler} />
+      <UserList users={userList} />
+    </div>
+  );
+}
 
 export default App;
